@@ -96,6 +96,38 @@ export const products: Product[] = [
     spec: "Crystal resin · elegant banquet seating",
     categorySlug: "chairs",
   },
+  {
+    name: "Gold Phoenix Chairs",
+    slug: "gold-phoenix-chairs",
+    spec: "Gold resin · open-back banquet chair",
+    categorySlug: "chairs",
+  },
+
+  // ── Table linens (tablecloths & covers) ────────────────────────────────
+  {
+    name: "Round 120 inch – White",
+    slug: "round-120-inch-white-tablecloth",
+    spec: "120\" round tablecloth · seats 8–10",
+    categorySlug: "tables",
+  },
+  {
+    name: "White Rectangular Tablecloths for 6 feet table",
+    slug: "white-rectangular-tablecloth-6ft",
+    spec: "White · fits 6 ft banquet tables",
+    categorySlug: "tables",
+  },
+  {
+    name: "Spandex Round Cocktail Table Cover 30\" – Black",
+    slug: "black-cocktail-table-cover",
+    spec: "Black spandex · fits 30\" high-top tables",
+    categorySlug: "tables",
+  },
+  {
+    name: "Spandex Round Cocktail Table Cover 30\" – White",
+    slug: "white-cocktail-table-cover",
+    spec: "White spandex · fits 30\" high-top tables",
+    categorySlug: "tables",
+  },
 
   // ── Heaters ────────────────────────────────────────────────────────────
   {
@@ -141,5 +173,7 @@ export const products: Product[] = [
 ];
 
 export function productsForCategory(categorySlug: string): Product[] {
-  return products.filter((p) => p.categorySlug === categorySlug);
+  // Newest first: products are appended to the list as they're added, so the
+  // most recently added show at the top and older ones fall to the bottom.
+  return products.filter((p) => p.categorySlug === categorySlug).reverse();
 }
