@@ -103,30 +103,30 @@ export const products: Product[] = [
     categorySlug: "chairs",
   },
 
-  // ── Table linens (tablecloths & covers) ────────────────────────────────
+  // ── Linens ─────────────────────────────────────────────────────────────
   {
     name: "Round 120 inch – White",
     slug: "round-120-inch-white-tablecloth",
     spec: "120\" round tablecloth · seats 8–10",
-    categorySlug: "tables",
+    categorySlug: "linens",
   },
   {
     name: "White Rectangular Tablecloths for 6 feet table",
     slug: "white-rectangular-tablecloth-6ft",
     spec: "White · fits 6 ft banquet tables",
-    categorySlug: "tables",
+    categorySlug: "linens",
   },
   {
     name: "Spandex Round Cocktail Table Cover 30\" – Black",
     slug: "black-cocktail-table-cover",
     spec: "Black spandex · fits 30\" high-top tables",
-    categorySlug: "tables",
+    categorySlug: "linens",
   },
   {
     name: "Spandex Round Cocktail Table Cover 30\" – White",
     slug: "white-cocktail-table-cover",
     spec: "White spandex · fits 30\" high-top tables",
-    categorySlug: "tables",
+    categorySlug: "linens",
   },
 
   // ── Heaters ────────────────────────────────────────────────────────────
