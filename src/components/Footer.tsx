@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Icon from "./Icon";
 import { company, tracks } from "@/lib/site";
+import { cities } from "@/lib/locations";
 
 export default function Footer() {
   return (
     <footer className="bg-cream pt-16">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-10 pb-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 pb-14 sm:grid-cols-2 lg:grid-cols-5">
           {/* One column per rental track, mirroring the page structure */}
           <div className="grid gap-10 sm:col-span-2 sm:grid-cols-2">
             {tracks.map((track) => (
@@ -48,6 +49,25 @@ export default function Footer() {
                     className="text-sm text-slate transition hover:text-forest"
                   >
                     {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Service areas */}
+          <div>
+            <h3 className="text-sm font-bold uppercase tracking-wide text-ink">
+              Service Areas
+            </h3>
+            <ul className="mt-5 space-y-2">
+              {cities.map((c) => (
+                <li key={c.slug}>
+                  <Link
+                    href={`/locations/${c.slug}`}
+                    className="text-sm text-slate transition hover:text-forest"
+                  >
+                    {c.name}
                   </Link>
                 </li>
               ))}

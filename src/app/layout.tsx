@@ -3,10 +3,13 @@ import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { company } from "@/lib/site";
 import "./globals.css";
 
 // Google Tag Manager container ID (public — it ships in the page HTML).
 const GTM_ID = "GTM-NZ2KM55S";
+
+const SITE_URL = "https://www.ironwoodrentals.ca";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -20,22 +23,96 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default:
-      "Ironwood Film's & Event Rentals | Greater Vancouver Event & Production Rentals",
+      "Tent & Event Rentals in the Lower Mainland | Ironwood Film's & Event Rentals",
     template: "%s | Ironwood Film's & Event Rentals",
   },
   description:
-    "Your trusted source for all things event and film in the Lower Mainland. Ironwood Film's & Event Rentals supplies tents, tables, chairs, linens, heaters, bars and location gear across British Columbia.",
+    "Ironwood Film's & Event Rentals delivers tents, tables, chairs, linens, heaters, bars and film production gear across the Lower Mainland — Surrey, Langley, Abbotsford, Vancouver, Burnaby and beyond. One call, one crew, zero chasing. Call 778-385-1498 for a same-day quote.",
   keywords: [
-    "event rentals Vancouver",
+    "tent rentals Surrey",
+    "event rentals Langley",
+    "wedding rentals Abbotsford",
+    "party rentals Vancouver",
+    "table and chair rentals Burnaby",
+    "patio heater rentals Lower Mainland",
+    "event rentals Lower Mainland",
     "film production rentals BC",
-    "party rentals Lower Mainland",
-    "tent rentals",
-    "ground protection mats",
     "wedding rentals British Columbia",
+    "pop up tent rentals",
   ],
+  authors: [{ name: company.name }],
+  openGraph: {
+    type: "website",
+    siteName: company.name,
+    locale: "en_CA",
+    title: "Tent & Event Rentals in the Lower Mainland",
+    description:
+      "Tents, tables, chairs, linens, heaters and film gear — delivered, set up and picked up across the Lower Mainland.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tent & Event Rentals in the Lower Mainland",
+    description:
+      "Tents, tables, chairs, linens, heaters and film gear — delivered, set up and picked up across the Lower Mainland.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
+
+/** LocalBusiness structured data — helps Google show us for "near me" searches. */
+function localBusinessJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: company.name,
+    url: SITE_URL,
+    telephone: "+17783851498",
+    email: company.email,
+    description:
+      "Tent, event and film production equipment rentals with delivery, setup and pickup across the Lower Mainland and British Columbia.",
+    areaServed: [
+      "Surrey",
+      "Langley",
+      "Abbotsford",
+      "Vancouver",
+      "Burnaby",
+      "Coquitlam",
+      "Richmond",
+      "Delta",
+      "Maple Ridge",
+      "New Westminster",
+      "Lower Mainland",
+      "British Columbia",
+    ].map((name) => ({ "@type": "City", name })),
+    priceRange: "$$",
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ],
+        opens: "09:00",
+        closes: "18:00",
+      },
+    ],
+  };
+}
 
 export default function RootLayout({
   children,
@@ -48,6 +125,15 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-foreground">
+        {/* Structured data for search engines */}
+        <Script
+          id="local-business-jsonld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
+          {JSON.stringify(localBusinessJsonLd())}
+        </Script>
+
         {/* Google Tag Manager (noscript) — immediately after opening <body> */}
         <noscript>
           <iframe

@@ -26,13 +26,64 @@ export function generateStaticParams() {
   return allCategories().map((c) => ({ category: c.slug }));
 }
 
+/** Keyword-rich titles for the categories that drive event-rental sales. */
+const CATEGORY_SEO: Record<string, { title: string; description: string }> = {
+  "pop-up-canopy": {
+    title: "Pop-Up Tent Rentals in the Lower Mainland",
+    description:
+      "10×10 and 10×20 pop-up canopy tents for weddings, parties and events across the Lower Mainland. Delivered, set up and picked up. Call 778-385-1498 for a same-day quote.",
+  },
+  tables: {
+    title: "Table Rentals in the Lower Mainland",
+    description:
+      "Round, banquet, farmhouse and cocktail table rentals for weddings and events in Surrey, Langley, Vancouver and across the Lower Mainland. Delivered and set up. Call 778-385-1498.",
+  },
+  chairs: {
+    title: "Chair Rentals in the Lower Mainland",
+    description:
+      "Chiavari, folding, lounge and ghost chair rentals for weddings and events across the Lower Mainland. Delivery, setup and pickup included. Call 778-385-1498.",
+  },
+  linens: {
+    title: "Linen Rentals in the Lower Mainland",
+    description:
+      "Tablecloth, runner, drapery and napkin rentals for weddings and events in the Lower Mainland. Paired with our tables and chairs for one complete package. Call 778-385-1498.",
+  },
+  heaters: {
+    title: "Patio Heater Rentals in the Lower Mainland",
+    description:
+      "Patio heater and climate control rentals for outdoor weddings and events across the Lower Mainland. Keep guests warm from September to May. Call 778-385-1498.",
+  },
+  bars: {
+    title: "Portable Bar Rentals in the Lower Mainland",
+    description:
+      "Portable bar, cooler and service cart rentals for weddings and events in the Lower Mainland. Delivered and set up with your full rental package. Call 778-385-1498.",
+  },
+  "ground-protection-mats": {
+    title: "Ground Protection Mat Rentals in BC",
+    description:
+      "Turf protection, trackway and vehicle access mats for events and film productions across BC. Flexible terms for productions of every size. Call 778-385-1498.",
+  },
+};
+
 export async function generateMetadata(
   props: PageProps<"/rentals/[category]">
 ): Promise<Metadata> {
   const { category: slug } = await props.params;
   const category = findCategory(slug);
   if (!category) return {};
-  return { title: category.name, description: category.blurb };
+  const seo = CATEGORY_SEO[slug];
+  const url = `/rentals/${slug}`;
+  return {
+    title: seo?.title ?? `${category.name} Rentals in the Lower Mainland`,
+    description: seo?.description ?? category.blurb,
+    alternates: { canonical: url },
+    openGraph: {
+      title: seo?.title ?? category.name,
+      description: seo?.description ?? category.blurb,
+      url,
+      type: "website",
+    },
+  };
 }
 
 export default async function CategoryPage(
