@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import StickyCallBar from "@/components/StickyCallBar";
 import { company } from "@/lib/site";
 import "./globals.css";
 
@@ -153,6 +154,9 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        {/* Spacer so the sticky mobile call bar never covers footer content. */}
+        <div className="h-[57px] bg-cream sm:hidden" aria-hidden="true" />
+        <StickyCallBar />
       </body>
     </html>
   );

@@ -155,19 +155,7 @@ export default function QuoteSection() {
                     name="name"
                     required
                     placeholder="Your name *"
-                    className={field}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="sr-only">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="Email *"
+                    autoComplete="name"
                     className={field}
                   />
                 </div>
@@ -179,7 +167,22 @@ export default function QuoteSection() {
                     id="phone"
                     name="phone"
                     type="tel"
-                    placeholder="Phone"
+                    required
+                    placeholder="Phone *"
+                    autoComplete="tel"
+                    className={field}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="sr-only">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    autoComplete="email"
                     className={field}
                   />
                 </div>
@@ -191,30 +194,7 @@ export default function QuoteSection() {
                     id="date"
                     name="date"
                     type="date"
-                    className={field}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="type" className="sr-only">
-                    Event type
-                  </label>
-                  <select id="type" name="type" className={field}>
-                    <option value="">Event type…</option>
-                    <option>Wedding</option>
-                    <option>Corporate event</option>
-                    <option>Private party</option>
-                    <option>Film / photo production</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="location" className="sr-only">
-                    Location or venue
-                  </label>
-                  <input
-                    id="location"
-                    name="location"
-                    placeholder="Location / venue"
+                    aria-label="Event date"
                     className={field}
                   />
                 </div>
@@ -227,9 +207,9 @@ export default function QuoteSection() {
                 <textarea
                   id="message"
                   name="message"
-                  rows={5}
+                  rows={4}
                   required
-                  placeholder="What do you need? Guest count, items, delivery details… *"
+                  placeholder="What do you need? Event type, guest count, items, venue… *"
                   className="w-full rounded-sm border border-black/15 bg-white px-4 py-3 text-base text-ink outline-none transition focus:border-forest focus:ring-2 focus:ring-forest/20"
                 />
               </div>
@@ -257,6 +237,17 @@ export default function QuoteSection() {
                   "Thanks! Your request has been sent — we'll be in touch shortly."}
                 {status === "error" &&
                   `Something went wrong. Please email us directly at ${company.email}.`}
+              </p>
+
+              <p className="text-center text-[13px] leading-relaxed text-slate/80">
+                Summer and December dates book up fast — reach out early for
+                the best availability. Prefer to talk?{" "}
+                <a
+                  href={company.phoneHref}
+                  className="font-semibold text-forest underline-offset-4 hover:underline"
+                >
+                  {company.phone}
+                </a>
               </p>
             </form>
           </div>
