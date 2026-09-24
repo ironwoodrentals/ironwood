@@ -22,6 +22,17 @@ function findCategory(slug: string) {
   return allCategories().find((c) => c.slug === slug);
 }
 
+/** Cross-sell map: what customers usually book alongside each category. */
+const PAIRINGS: Record<string, string[]> = {
+  "pop-up-canopy": ["tables", "chairs", "heaters"],
+  tables: ["chairs", "linens", "pop-up-canopy"],
+  chairs: ["tables", "linens", "pop-up-canopy"],
+  linens: ["tables", "chairs", "bars"],
+  heaters: ["pop-up-canopy", "tables", "chairs"],
+  bars: ["tables", "linens", "chairs"],
+  "ground-protection-mats": ["pop-up-canopy", "heaters", "tables"],
+};
+
 export function generateStaticParams() {
   return allCategories().map((c) => ({ category: c.slug }));
 }
@@ -95,6 +106,9 @@ export default async function CategoryPage(
 
   const items = productsForCategory(category.slug);
   const [from, to] = category.gradient;
+  const pairings = (PAIRINGS[category.slug] ?? [])
+    .map((slug) => findCategory(slug))
+    .filter((c): c is Category => Boolean(c));
 
   // Which track(s) this category belongs to, for the breadcrumb.
   const parent = tracks.find((t) =>
@@ -203,8 +217,13 @@ export default async function CategoryPage(
                     <div className="border-t border-black/5 p-5">
                       <h2 className="font-semibold text-ink">{item.name}</h2>
                       {item.spec && (
-                        <p className="mt-1 text-[13px] leading-snug text-slate">
+                        <p className="mt-1 text-[13px] font-medium leading-snug text-forest">
                           {item.spec}
+                        </p>
+                      )}
+                      {item.description && (
+                        <p className="mt-2 text-[13px] leading-relaxed text-slate">
+                          {item.description}
                         </p>
                       )}
                       <Link
@@ -242,6 +261,42 @@ export default async function CategoryPage(
           )}
         </div>
       </section>
+
+      {/* Complete your setup — cross-sell */}
+      {pairings.length > 0 && (
+        <section className="border-t border-black/5 bg-cream py-14 sm:py-16">
+          <div className="mx-auto max-w-7xl px-6">
+            <h2 className="font-display text-2xl text-ink sm:text-3xl">
+              Complete your setup
+            </h2>
+            <p className="mt-2 max-w-2xl text-slate">
+              Most {category.name.toLowerCase()} bookings go out with these —
+              bundle them into one delivery, one crew, one quote.
+            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              {pairings.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/rentals/${p.slug}`}
+                  className="group flex items-center justify-between gap-4 rounded-lg bg-white p-5 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md"
+                >
+                  <div>
+                    <h3 className="font-semibold text-ink transition group-hover:text-forest">
+                      {p.name}
+                    </h3>
+                    <p className="mt-1 line-clamp-2 text-[13px] leading-snug text-slate">
+                      {p.blurb}
+                    </p>
+                  </div>
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest/10 text-forest transition group-hover:bg-forest group-hover:text-white">
+                    <Icon name="arrow" size={16} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }
