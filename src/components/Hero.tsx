@@ -44,7 +44,7 @@ export default function Hero() {
       <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-40 sm:pb-24 sm:pt-36 lg:pt-40">
         <div className="max-w-3xl">
           <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.3em] text-gold sm:text-sm">
-            Event Rentals · Lower Mainland
+            Event & Film Rentals · Lower Mainland
           </p>
 
           <h1 className="text-4xl font-semibold uppercase leading-[1.02] tracking-tight text-white drop-shadow-lg sm:text-5xl lg:text-6xl xl:text-7xl">
@@ -58,7 +58,8 @@ export default function Hero() {
           </h1>
 
           <p className="mt-7 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
-            Tents, tables, chairs, heaters &amp; more — delivered, set up and
+            Tents, tables, chairs, heaters &amp; more — for weddings, parties,
+            corporate events and film productions. Delivered, set up and
             picked up across Surrey, Langley, Vancouver and the Lower Mainland.
           </p>
 
