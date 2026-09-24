@@ -181,6 +181,7 @@ export default function QuoteSection() {
                     id="email"
                     name="email"
                     type="email"
+                    required
                     placeholder="Email"
                     autoComplete="email"
                     className={field}
