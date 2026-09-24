@@ -24,7 +24,7 @@ function findCategory(slug: string) {
 
 /** Cross-sell map: what customers usually book alongside each category. */
 const PAIRINGS: Record<string, string[]> = {
-  "pop-up-canopy": ["tables", "chairs", "heaters"],
+  "pop-up-canopy": ["tables", "chairs", "heaters", "ground-protection-mats"],
   tables: ["chairs", "linens", "pop-up-canopy"],
   chairs: ["tables", "linens", "pop-up-canopy"],
   linens: ["tables", "chairs", "bars"],
@@ -42,7 +42,7 @@ const CATEGORY_SEO: Record<string, { title: string; description: string }> = {
   "pop-up-canopy": {
     title: "Pop-Up Tent Rentals in the Lower Mainland",
     description:
-      "10×10 and 10×20 pop-up canopy tents for weddings, parties and events across the Lower Mainland. Delivered, set up and picked up. Call 778-385-1498 for a same-day quote.",
+      "10×10 and 10×20 pop-up canopy tents for weddings, events and film productions across the Lower Mainland. Delivered, set up and picked up. Call 778-385-1498 for a same-day quote.",
   },
   tables: {
     title: "Table Rentals in the Lower Mainland",

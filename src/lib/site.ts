@@ -67,7 +67,7 @@ export const tracks: RentalTrack[] = [
       {
         name: "Pop-up Canopy",
         slug: "pop-up-canopy",
-        blurb: "10×10 & 10×20 instant shelters for set & basecamp",
+        blurb: "10×10 & 10×20 instant shelters for events, film sets & basecamp",
         icon: "tent",
         gradient: ["#3a3d42", "#16181b"],
         image: "/categories/pop-up-canopy.png",

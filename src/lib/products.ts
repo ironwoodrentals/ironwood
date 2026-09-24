@@ -38,7 +38,7 @@ export const products: Product[] = [
     slug: "10x10-pop-up-canopy",
     spec: "10' × 10' instant shelter · adjustable legs",
     description:
-      "Our most-booked tent. Covers 100 sq ft — enough for a cake table, DJ setup, registration desk, or market stall. Sets up in minutes with adjustable legs for uneven ground. Best for vendor booths, backyard parties, and ceremony accents.",
+      "Our most-booked tent. Covers 100 sq ft — enough for a cake table, DJ setup, registration desk, or market stall. On film sets it's ideal for video village, equipment shade, and talent holding. Sets up in minutes with adjustable legs for uneven ground. Best for vendor booths, backyard parties, ceremonies, and location shoots.",
     categorySlug: "pop-up-canopy",
   },
   {
@@ -46,7 +46,7 @@ export const products: Product[] = [
     slug: "10x20-pop-up-canopy",
     spec: "10' × 20' instant shelter · adjustable legs",
     description:
-      "Double the cover at 200 sq ft — fits a full buffet line, a 6 ft bar setup, or 30–40 standing guests. A favourite for food stations and check-in areas at weddings and festivals. We deliver, set up, and pick it up.",
+      "Double the cover at 200 sq ft — fits a full buffet line, a 6 ft bar setup, or 30–40 standing guests. A favourite for food stations and check-in areas at weddings and festivals, and for craft services and gear staging on film productions. We deliver, set up, and pick it up.",
     categorySlug: "pop-up-canopy",
   },
 
